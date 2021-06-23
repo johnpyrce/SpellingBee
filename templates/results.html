@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Spelling Bee</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
+		<style>
+		table {
+			font-family:  arial, sans-serif;
+			border-collapse:  collapse;
+		}
+		td, th {
+				border:  1px solid black;
+				text-align:  left;
+				padding:  8px
+		}
+		tr:nth-child(even) {
+				background-copplor:  black;
+		}
+		body {
+			font-family:  arial, sans-serif;
+		}
+		</style>
+    </head>
+    <body>
+		<h1>Spelling Bee!</h1>
+		<p>
+		<p>Target letters: <strong>{{ target_letters }}</strong>
+        <hr>
+        <h3>Names</h3>
+		<table>
+		<tr><td>{{ names|length }}<td>{{ ", ".join(names)}}</tr>
+		</table>
+        <h3>Words</h3>
+		<table>
+		<tr><td>{{ words|length }}<td>{{ ", ".join(words)}}</tr>
+		</table>
+        <h3>Maximal Word(s)</h3>
+		<table>
+		<tr><td>{{ max_words|length }}<td>{{ ", ".join(max_words)}}</tr>
+		</table>
+        <h3>Suffixes</h3>
+		<table>
+		{% for key, value in suffixes.items() %}
+		<tr><td><strong>{{key}}</strong><td>{{ ", ".join(value)}}</tr>
+		{% endfor %}
+		</table>
+        <h3>Inflections</h3>
+        <table>
+        {% for key, value in inflections.items() %}
+		<tr><td><strong>{{key}}</strong><td>{{ ", ".join(value)}}</tr>
+		{% endfor %}
+        </table>
+    </body>
+</html>
