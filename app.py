@@ -10,8 +10,11 @@ def hello():
 
 @app.route('/', methods=['POST'])
 def hello_post():
-    letters = request.form['letters']
-    return results(letters)
+    letters = request.form['letters'].lower()
+    if len(letters) != 7:
+        return render_template("start_error.html")
+    else:
+        return results(letters)
 
 @app.route("/letters/<letters>")
 def results(letters = None):
@@ -23,4 +26,4 @@ def results(letters = None):
     max_words = bee.all_letter_words
     inflections = bee.inflections
     return render_template("results.html", 
-        target_letters=letters, names=names, words=words, suffixes=suffixes, max_words=max_words, inflections=inflections)
+        target_letters=letters, names=names, words=words, suffixes=suffixes, max_words=max_words, inflections=inflections, score=bee.score())

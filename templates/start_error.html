@@ -8,12 +8,6 @@
 		<style>
 		body {
 			font-family:  arial, sans-serif;
-			font-size: 2vw;
-		}
-		input[type='submit'] { font-size: 2vw; }
-		input[type='text'] { font-size: 2vw; }
-		p.max {
-				max-width:  50vw;
 		}
 		</style>
     </head>
@@ -21,17 +15,12 @@
 		<center>
 		<h1>Spelling Bee!</h1>
 		<p>
-		<img src="{{ url_for('static', filename='bee3.jpg' ) }}" width="100" height="100">
-		<p class="max">
-		Solver for the New York Times Spelling Bee game.  Enter exactly
-		7 letters.  Find words made up only of those letters.  The first
-		letter must always be present.</p>
-		<p>
 		<p>Enter target letters:</p>
 		<form method="POST">
-			<input type="text" name="letters" id="letters">
+			<input name="letters" id="letters">
 			<input type="submit">
 		</form>
+		<p><strong>There must be exactly 7 target letters, the first letter must always be present.</strong></p>
 		</center>
     </body>
 </html>

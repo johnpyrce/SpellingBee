@@ -39,6 +39,11 @@ class SpellingBee:
     def _max_word(w: str) -> bool:
         ''' Is this a maximal word? '''
         return len(set(w)) == 7
+
+    def score(self) -> int:
+        ''' Calculate the score for the word list, which must exist. '''
+        score = lambda x: 0 if len(x) <= 3 else 1 if len(x) == 4 else (len(x) + 7) if len(set(x)) == 7 else len(x)
+        return sum([score(w) for w in self.words])
     
     def find_words(self) -> Tuple[List[str], List[str]]:
         ''' Get lists of words and names, in member variables. '''
@@ -134,6 +139,7 @@ if __name__ == '__main__':
     print("\t", bee.words)
     print("Max Words:") 
     print("\t", bee.all_letter_words)
+    print("Predicted score =", bee.score())
     print("Suffixes:")
     for k, v in bee.candidate_suffixes.items():
         print("\t", k, v)
